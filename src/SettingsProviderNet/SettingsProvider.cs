@@ -91,6 +91,7 @@ namespace SettingsProviderNet
             if (underlyingType != typeof(string) && string.IsNullOrEmpty(storedValue)) return null;
             if (underlyingType.IsEnum) return Enum.Parse(underlyingType, storedValue, false);
             if (underlyingType == typeof(Guid)) return Guid.Parse(storedValue);
+            if (underlyingType == typeof(DateTimeOffset)) return DateTimeOffset.Parse(storedValue, CultureInfo.InvariantCulture);
             if (isList) return ReadList(storedValue, underlyingType);
 
             object converted;
